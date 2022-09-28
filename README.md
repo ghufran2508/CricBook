@@ -12,4 +12,4 @@ This project stores data in a MYSQL database.
 Change the connectionString in web.config file to run the project in you device.
 
 You can View little Details of project here
-[embed][CricBook-1.pdf](https://github.com/ghufran2508/CricBook/files/9667288/CricBook-1.pdf)[embed]
+[CricBook.pdf](https://github.com/ghufran2508/CricBook/files/9667288/CricBook-1.pdf)

@@ -1,0 +1,114 @@
+﻿body {
+    background-image: linear-gradient(to right, #2a4255 0%, #517fa4 100%);
+}
+
+.container {
+    height: 100vh;
+    position: relative;
+    text-align: center;
+}
+
+.login-form {
+    position: absolute;
+    top: 20%;
+    left: 8%;
+    border: 1px solid aqua;
+    border-radius: 1%;
+    box-shadow: 3px 3px 3px;
+    height: 400px;
+}
+
+.logo-container {
+    background-image: url(images/Sports-Logo-Designs-1280x720.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    height: 400px;
+}
+
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    /* padding: 10px; */
+    height: 50px;
+    /* outline: none; */
+}
+
+    .input-field:focus {
+        border: 2px solid dodgerblue;
+    }
+
+.c-white {
+    color: white;
+}
+
+.f-logo {
+    background-image: url("images/facebook-icon.jpg");
+}
+
+.g-logo {
+    background-image: url("images/gmail-logo.png");
+}
+
+.t-logo {
+    background-image: url("images/twitter-logo.png");
+}
+
+.f-logo, .g-logo, .t-logo {
+    display: inline-block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.signup-link {
+    color: white;
+    padding: 1px;
+}
+
+.checkbox {
+    height: 20px;
+    width: 20px;
+}
+
+.animate {
+    animation-name: loading;
+    animation-duration: 2s;
+}
+
+@keyframes loading {
+    0% {
+        background-image: linear-gradient(to right, #6bafd3, #2890d0, white, white, white);
+    }
+
+    50% {
+        background-image: linear-gradient(to right, #6bafd3, #2890d0, #006fc9, white, white);
+    }
+
+    75% {
+        background-image: linear-gradient(to right, #6bafd3, #2890d0, #006fc9, #0049b9, white);
+    }
+
+    100% {
+        background-image: linear-gradient(to right, #6bafd3, #2890d0, #006fc9, #0049b9, #38159d);
+    }
+}

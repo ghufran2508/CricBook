@@ -1,0 +1,23 @@
+﻿body {
+    background-image: linear-gradient(to right, #2a4255 0%, #517fa4 100%);
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+}
+
+.row {
+    position: absolute;
+    top: 7%;
+    width: 100%;
+}
+
+.table-photo {
+    height: 40px;
+    border-radius: 50%;
+}
+
+.table-header {
+    font-size: 30px;
+}

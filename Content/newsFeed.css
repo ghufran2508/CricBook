@@ -1,0 +1,55 @@
+﻿body {
+    background-image: linear-gradient(to right, #8db6d8 0%, #bbdaf3 100%);
+}
+
+.container {
+    height: 100vh;
+    margin-top: 20px;
+    /* opacity: 0.1; */
+}
+
+.profile-photo {
+    height: 40px;
+    border-radius: 50%;
+}
+
+.card-img-bottom {
+    max-height: 600px;
+}
+
+.add-post-form {
+    position: fixed;
+    top: 20%;
+    left: 25%;
+    width: 500px;
+    background-image: linear-gradient(to right, #2a4255 0%, #517fa4 100%);
+    display: none;
+}
+
+.post-text {
+    height: 125px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .add-post-form {
+        left: 35%;
+        width: 575px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+} }

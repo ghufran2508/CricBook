@@ -1,0 +1,124 @@
+﻿@{
+    Layout = "";
+}
+@{
+    ViewBag.Title = "ViewTeam";
+}
+@model WebApplication1.Models.UserPlayerView
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Font Awesome Link CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="shortcut icon" href="#">
+
+    <link rel="icon" href="../icons/Sports-Logo-Designs-1280x720.jpg">
+    <link href="@Url.Content("~/Content/User/viewTeam.css")" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../static/user/viewTeam.css">
+
+    <title>Team</title>
+</head>
+<body>
+
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="nav-data container">
+            <div class="col-9">
+                <div class="row d-flex">
+
+                    <a href="./index"><img src="~/Content/images/Sports-Logo-Designs-1280x720.jpg" class="brand-logo" /></a>
+
+                    <form class="form-inline my-2 my-lg-0 ml-1">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+                    <ul class="navbar-nav mr-auto ml-1">
+                        <li class="nav-item m-1">
+                            <a class="nav-link" href="/UserView/index">Home</a>
+                        </li>
+                        <li class="nav-item m-1">
+                            <a class="nav-link" href="/UserView/fixtures">Fixtures</a>
+                        </li>
+                        <li class="nav-item active m-1">
+                            <a class="nav-link" href="/UserView/teams">
+                                Teams
+                            </a>
+                        </li>
+                        <li class="nav-item m-1">
+                            <a class="nav-link" href="/UserView/friends">Friends</a>
+                        </li>
+                        <li class="nav-item m-1">
+                            <a class="nav-link" href="/UserView/dashboard">Dashboard</a>
+                        </li>
+
+                    </ul>
+
+
+
+
+                </div>
+            </div>
+            <div class="col-3">
+                <a class="row nav-link m-0 p-0 ml-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <div style="display:inline-flex;" class="nav-btn p-1">
+                                <img src="@Model.myProfile.ProfilePic" class="user-nav-photo" />
+                                <div class="user-name mt-1 ml-1"> <span>@Model.myProfile.Name</span> ▼</div>
+                            </div>
+                            <div class="dropdown-menu ml-2" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="#">Help & Support</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/Home/Signout">LogOut</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row border border-dark team-info">
+            <div class="col-12">
+                <img src="@Model.team.Logo" class="team-logo" />
+                <span class="team-name">@Model.team.TeamName</span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="row">
+                    @foreach (var player in Model.players)
+                    {
+                        <div class="col-6 p-2">
+                            @player.playerName
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+

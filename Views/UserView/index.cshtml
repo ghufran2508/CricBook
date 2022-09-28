@@ -1,0 +1,387 @@
+﻿
+
+@model WebApplication1.Models.UserIndexView
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Font Awesome Link CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="shortcut icon" href="#">
+    <link href="@Url.Content("~/Content/User/index.css")" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="~/Content/images/Sports-Logo-Designs-1280x720.jpg">
+
+    <title>Home</title>
+</head>
+<body>
+
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="nav-data container">
+            <div class="col-9">
+                <div class="row d-flex">
+
+                    <a href="./index"><img src="~/Content/images/Sports-Logo-Designs-1280x720.jpg" class="brand-logo" /></a>
+
+                    <form class="form-inline my-2 my-lg-0 ml-1">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+                    <ul class="navbar-nav mr-auto ml-1">
+                        <li class="nav-item active m-1">
+                            <a class="nav-link" href="/UserView/index">Home</a>
+                        </li>
+                        <li class="nav-item m-1">
+                            <a class="nav-link" href="/UserView/fixtures">Fixtures</a>
+                        </li>
+                        <li class="nav-item m-1">
+                            <a class="nav-link" href="/UserView/teams">Teams</a>
+                        </li>
+                        <li class="nav-item m-1">
+                            <a class="nav-link" href="/UserView/friends">Friends</a>
+                        </li>
+                        <li class="nav-item m-1">
+                            <a class="nav-link" href="/UserView/dashboard">Dashboard</a>
+                        </li>
+
+                    </ul>
+
+
+
+
+                </div>
+            </div>
+            <div class="col-3">
+                <a class="row nav-link m-0 p-0 ml-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <div style="display:inline-flex;" class="nav-btn p-1">
+                                <img src="@Model.myProfile.ProfilePic" class="user-nav-photo" />
+                                <div class="user-name mt-1 ml-1"> <span>@Model.myProfile.Name</span> ▼</div>
+                            </div>
+                            <div class="dropdown-menu ml-2" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="#">Help & Support</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/Home/Signout">LogOut</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- user own data -->
+    <!-- friend suggestions -->
+    <!-- fixtures -->
+    <!-- own+friend post -->
+    <div class="container mt-3">
+        <div class="row">
+
+            <!-- user panel -->
+            <div class="col-3 profile-view">
+                <!-- //profile -->
+                <div class="card align-items-center" style="width: 100%;">
+                    <div class="theme bg-dark" style="height: 100px;width: 100%">
+
+                    </div>
+
+                    @*<img class="card-img-top user-image" src="~/Content/images/default_image.png" alt="Card image cap">*@
+                    <img class="card-img-top user-image" src="@Model.myProfile.ProfilePic" alt="Card image cap">
+
+                    <form action="/UserView/changeProfilePic" method="post" id="profile_update" enctype="multipart/form-data">
+                        <input type="file" id="update_profile" style="display:none;" name="new_profile_pic"/>
+                        <label for="update_profile" style="position:relative; bottom: -35px; right: -30px"><i class="fa fa-camera fa-lg"></i></label>
+                    </form>
+
+                    <div class="card-body text-center">
+                        <div class="user mb-1">
+                            <h5 class="user-name mb-0"> @Model.myProfile.Name </h5>
+                            <small class="mt-0" style="color:rgb(106, 129, 150)">@Model.myProfile.Email</small>
+                        </div>
+                        <div class="followers mb-1">
+                            <p class="card-text mb-0">Followers</p>
+                            <div style="color:rgb(106, 129, 150)"> @Model.followersCount </div>
+                        </div>
+                        <div class="following mb-1">
+                            <p class="card-text following mb-0">Following</p>
+                            <div style="color:rgb(106, 129, 150)"> @Model.followingCount </div>
+                        </div>
+                        <hr />
+                        <a href="#" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+
+                <!-- friends -->
+
+                <div class="card mt-2">
+                    <div class="suggestions">
+                        Suggestions
+                        <hr />
+                    </div>
+
+                    <div class="add-friends">
+
+                        @foreach (var suggestion in Model.suggestions)
+                        {
+                            <form action="/UserView/SendFriendRequest" method="GET">
+
+                                <div class="person d-flex mb-1 ml-1">
+                                    <img src="@suggestion.ProfilePic" class="friend-suggestion-image ml-3" />
+                                    <p class="friend-name ml-2 mt-2"> @suggestion.Name </p>
+                                    <input type="hidden" value="@suggestion.ID" name="id" />
+                                    <button class="btn btn-primary add-friend" type="submit">+</button>
+                                </div>
+
+                            </form>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- POST -->
+            <div class="col-6 post-view">
+                <!-- //new post -->
+                <form class="card mb-3" action="/UserView/AddPost" method="post" enctype="multipart/form-data"
+                      style="width: 100%;" id="new-post-form">
+
+                    <div class="row mt-2">
+                        <div class="col-2 ml-4">
+                            <img src="@Model.myProfile.ProfilePic" class="user-status-photo ml-2 mt-2">
+                        </div>
+                        <div class="col-9">
+                            <textarea type="text" class="new-post-text" id="post-textarea"
+                                      placeholder="Whats on your mind?"
+                                      name="post"></textarea>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row justify-content-center mr-4 mt-2 mb-2">
+                        <input type="file" class="new-post-file btn" name="new_file" id="post-file" />
+                        <div class="btn btn-primary pl-5 pr-5" type="submit" onclick="verifyNewPost()">Post</div>
+                    </div>
+                </form>
+
+
+                @foreach (var posts in Model.posts)
+                {
+                    <!-- all posts -->
+                    <div class="card mb-3" style="width: 100%;" id="@posts.Id">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-9">
+                                    <img src="@posts.User.ProfilePic" class="friend-photo"
+                                         style="position: relative;" />
+
+                                    <span class="name-date ml-2" style="position: absolute;">
+                                        <div class="friend-name">@posts.User.Name</div>
+                                        <div class="date">@posts.dateUpload</div>
+                                    </span>
+                                </div>
+                                <div class="col-3 align-content-end">
+                                    <div class="row justify-content-end m-2">
+
+                                        <!-- also pass id here... -->
+                                        <button class="post-options-x btn btn-danger p-0 pl-1 pr-1"
+                                                onclick="hidePost(@posts.Id)">
+                                            x
+                                        </button>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-body m-0 p-2">
+                            <div class="description p-0 m-0 card-img-top">
+                                @posts.Description
+                            </div>
+                            @if (posts.Media != "")
+                            {
+                                <div class="image mt-3">
+                                    <img src="@posts.Media" class="post-image" />
+                                </div>
+                            }
+                        </div>
+                        <div class="card-footer">
+                            @* can add Like, comment, share functionality here..... *@
+                        </div>
+                    </div>
+                }
+                
+
+            </div>
+
+
+            <div class="col-3">
+
+                <div class="card mt-2">
+                    <div class="fixtures">
+                        Fixtures
+                        <hr />
+                    </div>
+
+
+                    @foreach (var fixture in Model.fixtures)
+                    {
+                        <!-- teams -->
+                        <div class="m-2">
+                            <!-- teams1 -->
+                            <div class="col-12">
+
+                                <div class="team1">
+                                    <img src="@fixture.HomeTeam.Logo" class="team-flag" />
+
+                                    <span class="team1-name">@fixture.HomeTeam.TeamName</span>
+                                </div>
+                            </div>
+
+                            <!-- vs - date time -->
+                            <div class="row justify-content-center">
+
+                                <span class="vs-logo">vs</span> <span class="date-match">@fixture.time</span>
+
+                            </div>
+
+                            <!-- team2 -->
+                            <div class="col-12">
+                                <div class="row justify-content-end mr-1">
+                                    <div class="team2">
+                                        <img src="@fixture.AwayTeam.Logo" class="team-flag" />
+
+                                        <span class="team1-name">@fixture.AwayTeam.TeamName</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+
+
+                    <!-- teams -->
+                    <!--<div class="m-2">-->
+                        <!-- teams1 -->
+                        <!--<div class="col-12">
+
+                            <div class="team1">
+                                <img src="~/Content/images/football-logo.jpg" class="team-flag" />
+
+                                <span class="team1-name">Football</span>
+                            </div>
+                        </div>-->
+
+                        <!-- vs - date time -->
+                        <!--<div class="row justify-content-center">
+
+                            <span class="vs-logo">vs</span> <span class="date-match">1:00 AM Jun 24</span>
+
+                        </div>-->
+
+                        <!-- team2 -->
+                        <!--<div class="col-12">
+                            <div class="row justify-content-end mr-1">
+                                <div class="team2">
+                                    <img src="~/Content/images/football-logo.jpg" class="team-flag" />
+
+                                    <span class="team1-name">Football</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr />-->
+
+                    <!-- teams -->
+                    <!--<div class="m-2">-->
+                        <!-- teams1 -->
+                        <!--<div class="col-12">
+
+                            <div class="team1">
+                                <img src="~/Content/images/cricket-logo.jpg" class="team-flag" />
+
+                                <span class="team1-name">Cricket</span>
+                            </div>
+                        </div>-->
+
+                        <!-- vs - date time -->
+                        <!--<div class="row justify-content-center">
+
+                            <span class="vs-logo">vs</span> <span class="date-match">1:00 AM Jun 24</span>
+
+                        </div>-->
+
+                        <!-- team2 -->
+                        <!--<div class="col-12">
+                            <div class="row justify-content-end mr-1">
+                                <div class="team2">
+                                    <img src="~/Content/images/cricket-logo.jpg" class="team-flag" />
+
+                                    <span class="team1-name">Cricket</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var c = url.searchParams.get("id");
+
+        document.getElementById("update_profile").onchange = function () {
+            document.getElementById("profile_update").submit();
+        };
+
+
+        function hidePost(id) {
+            let divH = document.getElementById(id);
+
+            divH.style.display = "none";
+        }
+
+        function verifyNewPost() {
+            let ta = document.getElementById("post-textarea");
+            let ff = document.getElementById("post-file");
+
+            console.log(ta);
+            console.log(ff);
+
+            if (ta.value.length > 0 || ff.value.length > 0)
+                document.getElementById("new-post-form").submit();
+        }</script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
